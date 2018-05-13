@@ -34,15 +34,30 @@ with open('conf/conf.json') as f:
 weights   = config["weights"]
 
 
-def vgg():    #2.07,, 49.81%
+def vgg_feature():    #2.07,, 49.81%
     #base_model = VGG16(weights=weights, include_top=False,input_shape=(224,224,3))
     base_model = VGG16(weights=weights)
-    base_model.layers.pop()
-    for layer in base_model.layers:
-        layer.trainable = False
-    y = base_model.output
-    predictions = Dense(10, activation="softmax")(y)
-    model = Model(input = base_model.input, output = predictions)
+    model = Model(input = base_model.input, output=base_model.get_layer('block5_conv3').output)
+    #model.compile(optimizers.Adam(lr=1e-4),loss='categorical_crossentropy', metrics=['accuracy'])
+    image_size = (224, 224)
+    return model
+
+
+
+def vgg_predict(p):
+    base_model = VGG16(weights=weights)
+    model=Sequential([
+        MaxPooling2D(input_shape=base_model.get_layer('block5_conv3').output_shape[1:]),
+        Flatten(),
+        Dropout(p),
+        Dense(256, activation='relu'),
+        BatchNormalization(),
+        Dropout(p),
+        Dense(256, activation='relu'),
+        BatchNormalization(),
+        Dropout(p),
+        Dense(10, activation='softmax')
+        ])
     model.compile(optimizers.Adam(lr=1e-4),loss='categorical_crossentropy', metrics=['accuracy'])
     return model
 
@@ -98,4 +113,25 @@ def vgg_tuned():#epoch=8, loss=0.766, acc=78.07
     predictions = Dense(10, activation="softmax")(y)
     model = Model(input = base_model.input, output = predictions)
     model.compile(optimizers.Adam(lr=1e-4),loss='categorical_crossentropy', metrics=['accuracy'])
+    return model
+
+
+
+def vgg_normalized():
+    base_model=VGG16(weights=weights, include_top=False,input_shape=(224,224,3))
+    for layer in base_model.layers:
+        layer.trainable = False
+    y = base_model.output
+    y = Flatten()(y)
+    y = Dropout(p)(y)
+    y = Dense(256, activation="relu")(y) #1024
+    y = BatchNormalization()(y)
+    y = Dropout(p)(y)
+    y = Dense(256, activation="relu")(y) #1024
+    y = BatchNormalization()(y)
+    y = Dropout(p)(y)
+    predictions = Dense(10, activation="softmax")(y)
+    model = Model(input = base_model.input, output = predictions)
+    sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+    model.compile(optimizer=sgd, loss='categorical_crossentropy', metrics=['accuracy'])
     return model
