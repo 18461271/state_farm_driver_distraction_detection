@@ -5,5 +5,4 @@ This is my first kaggle project,  I really enjoyed it.
 
 
 
-### Private score: 0.88048
 ### Public score: 0.80121
