@@ -20,7 +20,7 @@ test_folder = "dataset/kaggle_test_clean"
 
 train_batches = get_batches(train_folder, gen_t1,  batch_size=batch_size)
 #train_batches = get_batches(train_folder, batch_size=batch_size)
-val_batches = get_batches(valid_folder, batch_size=batch_size*2, shuffle=False)
+val_batches = get_batches(valid_folder, batch_size=batch_size, shuffle=False)
 
 (val_classes, trn_classes, val_labels, trn_labels, val_filenames, train_filenames, test_filenames) = get_classes(path)
 
