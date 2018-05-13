@@ -30,23 +30,14 @@ test_folder = "dataset/test"
 
 vgg_mean = np.array([103.939, 116.799, 123.68], dtype=np.float32).reshape((1,1,3))
 
-def vgg_preprocess(x):
-    x= x - vgg_mean
-    return x[:, ::-1] # reverse axis rgb->bgr
-
-def get_im_vgg(path, img_rows, img_cols, color_type=1):
-    # Load as grayscale
-    if color_type == 1:
-        img = cv2.imread(path, 0)
-    elif color_type == 3:
-        img = cv2.imread(path)
-    # Reduce size
-    resized = cv2.resize(img, (img_cols, img_rows))
-    resized = resized.astype(np.float32, copy=False)
-    resized=vgg_preprocess(resized)
-    #print(type(resized),resized.shape)
-    return resized
-
+def vgg_image(x):
+	image = load_img(x, target_size=(224, 224))
+	image = img_to_array(image)
+	image = image.reshape(( image.shape[0], image.shape[1], image.shape[2]))
+	image = preprocess_input(image)
+	#print(image.shape)
+	#print(type(image))
+	return image
 def get_im(path, img_rows, img_cols, color_type=1):
     # Load as grayscale
     if color_type == 1:
