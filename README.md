@@ -14,15 +14,18 @@ The general steps are as follows:
 1. Data: Split the kaggle train dataset into two parts, 80% is training data and 20% is validation data, making sure each driver is either in the train folder or in the validation folder. (This is done by import driver_imgs_list into local database and randomly select driver ID and then export the two dataset. )
 
 
-*``` SELECT * FROM `driver_imgs_list` WHERE subject IN ('p066', 'p056', 'p050', 'p021', 'p016')```
+* ``` SELECT * FROM `driver_imgs_list` WHERE subject IN ('p066', 'p056', 'p050', 'p021', 'p016'); ```
 * ```SELECT * FROM `driver_imgs_list` WHERE NOT subject='p066' AND NOT subject='p056' AND NOT subject='p050' AND NOT subject='p021'AND NOT subject='p016'; ```
 
-2. Images processing: 
-* (1)resize to (224,224,3)
-* (2) vgg_process 
-* (3)image augmentation.
+2. Images processing methods: 
+* (1)resize to (224,224,3), this one is good
+* (2)vgg_process : it is very to overfitting,
+* (3)image augmentation, this works amazing, details see  ->util.py ->gen_t1
 
-3. Models: vgg16 pretrained models without using the full connnected layers and using customized layers.
+3. Models: 
+test_model_2 : very basic cnn structure, has loss 3.23, accuracy 37%
+
+vgg16 pretrained models without using the full connnected layers and using customized layers.
 
 4. Train: using vgg16 pre-trained weights to train method_(2):vgg_processed data, save weights and continue training method_(1) processed data, save weights and train method(1)(3) processed data and then method(2)(3) data.
 
