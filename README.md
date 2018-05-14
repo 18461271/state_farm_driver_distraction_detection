@@ -3,10 +3,7 @@
 
 This is my first kaggle project,  I really enjoyed it.
 
-
-
 ### Public score: [0.80121](https://github.com/18461271/state_farm_driver_distraction_detection/blob/master/state_farm.JPG)
-
 
 
 The general steps are as follows:
@@ -18,21 +15,26 @@ The general steps are as follows:
 * ```SELECT * FROM `driver_imgs_list` WHERE NOT subject='p066' AND NOT subject='p056' AND NOT subject='p050' AND NOT subject='p021'AND NOT subject='p016'; ```
 
 2. Images processing methods: 
-* (1)resize to (224,224,3), this one is very good
-* (2)vgg_process : this is very easy go to overfitting,
-* (3)image augmentation, this works like a charm, details see  ->util.py ->gen_t1
+* (1)function: get_im() in image_process.py , it is used for resizing image to (224,224,3)
+* (2)function: vgg_image() in image_process.pyvgg_process, it is used for vgg16 model, but it is very easy to go to overfitting,
+* (3)gen_t1 in util.py,  image augmentation, this works like a charm.
 
 3. Models: 
-test_model_2 : very basic cnn structure, has loss 3.23, accuracy 37%
+* vgg_feature(): get the images features from vgg16 pretrained models.
+* vgg_predict(p): load the images features and final tuning the model.
 
-vgg16 pretrained models without using the full connnected layers and using customized layers.
+* test_model_2 : very basic cnn structure, has loss 3.23, accuracy 37%
+* test_model_3(): adding more layers, activation function = 'relu', has loss  1.52, accuracy 56.5% ,
+                                      activation function ='elu',   has loss 2.27, accuracy 46.711%  
+* vgg_tuned(): vgg16 pretrained model without top layers and adding customized Dense layers. This model is mainly used for training.
+* vgg_sgd(): the same as the previous one, only optimizer method differs, not as good as the previous one.
 
-4. Model training: using vgg16 pre-trained weights to train method_(2):vgg_processed data, save weights and continue training method_(1) processed data, save weights and train method(1)(3) processed data and then method(2)(3) data.
+
+4. Model training: using vgg16 pre-trained weights to train method_(2):vgg_processed data, save weights and continue training method_(1) processed data, save weights and train method(1)(3) processed data and then method(2)(3) processed data.
 * batchsize: 32, in general, the bigger the batchsize, the better accuracy and less loss, but it also requires more ram. My personal magic number is 2048 .
 * epochs: 5
 
-5. Test: test images are  processed by method(1).
-
+5. Test: test images are  processed by method(1) yields kaggle score: 0.80121, yields kaggle score 4.3 by using method(3).
 
 Looking further: more advanced techniques like hand picked features ( head and radio area) are interesting, KNN is also worth trying, I highly recommender python package [annoy](https://github.com/spotify/annoy), it is also implemented by Spotify. Howerver, my laptop is running out of memmory during saving features.
 
