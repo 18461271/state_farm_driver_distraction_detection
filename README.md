@@ -3,7 +3,7 @@
 
 This is my first kaggle project,  I really enjoyed it.
 
-### Public score: [0.80121](https://github.com/18461271/state_farm_driver_distraction_detection/blob/master/state_farm.JPG)
+### Public score: [0.80121](https://github.com/18461271/state_farm_driver_distraction_detection/blob/master/state_farm.JPG). Top 30%
 
 
 The general steps are as follows:
