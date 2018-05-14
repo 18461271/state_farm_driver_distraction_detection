@@ -14,6 +14,8 @@ gen_t2 = image.ImageDataGenerator(rescale=1./255,featurewise_center=True,rotatio
                 height_shift_range=0.05,width_shift_range=.1,
                 shear_range=0.1, channel_shift_range=20)
 
+#gen_t2 results in very bad accuracy, and it needs more than 20 epochs to achieve 50%
+
 def get_batches(dirname, gen=image.ImageDataGenerator(), shuffle=True, batch_size=4, class_mode='categorical',
                 target_size=(224,224)):
     return gen.flow_from_directory(dirname, target_size=target_size,
