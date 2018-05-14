@@ -11,7 +11,7 @@ This is my first kaggle project,  I really enjoyed it.
 
 The general steps are as follows:
 
-1. Data: Split the kaggle train dataset into two parts, 80% is training data and 20% is validation data, making sure each driver is either in the train folder or in the validation folder. (This is done by import driver_imgs_list into local database and randomly select driver ID and then export the two dataset. )
+1. Data: Split the kaggle train dataset into two parts, 80% is training data and 20% is validation data, making sure each driver is either in the train folder or in the validation folder. (This was done by importing driver_imgs_list into local database and randomly select driver ID and then exported the two dataset. )
 
 
 * ``` SELECT * FROM `driver_imgs_list` WHERE subject IN ('p066', 'p056', 'p050', 'p021', 'p016'); ```
@@ -34,7 +34,7 @@ vgg16 pretrained models without using the full connnected layers and using custo
 5. Test: test images are  processed by method(1).
 
 
-Looking further: more advanced techniques like hand picked features ( head and radio area) are interesting, KNN is also worth trying, but my laptop is running out of memmory during saving features.
+Looking further: more advanced techniques like hand picked features ( head and radio area) are interesting, KNN is also worth trying, I highly recommender python package [annoy](https://github.com/spotify/annoy), it is also implemented by Spotify. Howerver, my laptop is running out of memmory during saving features.
 
 My device information is as follows:
 Intel Core i7-77000HQ CPU@ 2.8GHz, 16GB RAM
