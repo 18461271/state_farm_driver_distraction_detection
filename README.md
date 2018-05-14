@@ -37,8 +37,8 @@ vgg16 pretrained models without using the full connnected layers and using custo
 Looking further: more advanced techniques like hand picked features ( head and radio area) are interesting, KNN is also worth trying, I highly recommender python package [annoy](https://github.com/spotify/annoy), it is also implemented by Spotify. Howerver, my laptop is running out of memmory during saving features.
 
 My device information is as follows:
-Intel Core i7-77000HQ CPU@ 2.8GHz, 16GB RAM
-NVIDIA GeForce GTX 1060 GDDR5@ 6,0GB (192-bit)
+ * Intel Core i7-77000HQ CPU@ 2.8GHz, 16GB RAM
+ * NVIDIA GeForce GTX 1060 GDDR5@ 6,0GB (192-bit)
 
 
 Winning Methods
