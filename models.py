@@ -117,7 +117,7 @@ def vgg_tuned():#epoch=8, loss=0.766, acc=78.07
 
 
 
-def vgg_normalized():
+def vgg_sgd():
     base_model=VGG16(weights=weights, include_top=False,input_shape=(224,224,3))
     for layer in base_model.layers:
         layer.trainable = False
