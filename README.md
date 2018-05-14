@@ -18,25 +18,27 @@ The general steps are as follows:
 * ```SELECT * FROM `driver_imgs_list` WHERE NOT subject='p066' AND NOT subject='p056' AND NOT subject='p050' AND NOT subject='p021'AND NOT subject='p016'; ```
 
 2. Images processing methods: 
-* (1)resize to (224,224,3), this one is good
-* (2)vgg_process : it is very to overfitting,
-* (3)image augmentation, this works amazing, details see  ->util.py ->gen_t1
+* (1)resize to (224,224,3), this one is very good
+* (2)vgg_process : this is very easy go to overfitting,
+* (3)image augmentation, this works like a charm, details see  ->util.py ->gen_t1
 
 3. Models: 
 test_model_2 : very basic cnn structure, has loss 3.23, accuracy 37%
 
 vgg16 pretrained models without using the full connnected layers and using customized layers.
 
-4. Train: using vgg16 pre-trained weights to train method_(2):vgg_processed data, save weights and continue training method_(1) processed data, save weights and train method(1)(3) processed data and then method(2)(3) data.
+4. Model training: using vgg16 pre-trained weights to train method_(2):vgg_processed data, save weights and continue training method_(1) processed data, save weights and train method(1)(3) processed data and then method(2)(3) data.
+* batchsize: 32, in general, the bigger the batchsize, the better accuracy and less loss, but it also requires more ram. My personal magic number is 2048 .
+* epochs: 5
 
 5. Test: test images are  processed by method(1).
 
 
 Looking further: more advanced techniques like hand picked features ( head and radio area) are interesting, KNN is also worth trying, but my laptop is running out of memmory during saving features.
 
-My device information:
-Intel Core i7-77000HQ CPU@2.8GHz, 16GB RAM
-NVIDIA GeForce GTX 1060 GDDR5@6,0GB (192-bit)
+My device information is as follows:
+Intel Core i7-77000HQ CPU@ 2.8GHz, 16GB RAM
+NVIDIA GeForce GTX 1060 GDDR5@ 6,0GB (192-bit)
 
 
 Winning Methods
