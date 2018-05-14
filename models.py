@@ -34,7 +34,7 @@ with open('conf/conf.json') as f:
 weights   = config["weights"]
 
 
-def vgg_feature():    #2.07,, 49.81%
+def vgg_feature():   
     #base_model = VGG16(weights=weights, include_top=False,input_shape=(224,224,3))
     base_model = VGG16(weights=weights)
     model = Model(input = base_model.input, output=base_model.get_layer('block5_conv3').output)
