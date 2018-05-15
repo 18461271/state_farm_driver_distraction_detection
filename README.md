@@ -45,7 +45,7 @@ The general steps are as follows:
 
  * test images are  processed by method(1) yields kaggle score: 0.80121, yields kaggle score 4.3 by using method(3).
 
-Looking further: more advanced techniques like hand picked features ( head and radio area) are interesting, (KNN)[https://erikbern.com/2018/02/15/new-benchmarks-for-approximate-nearest-neighbors.html] is also worth trying. Howerver, my laptop is running out of memmory during saving features.
+Looking further: more advanced techniques like hand picked features ( head and radio area) are interesting, [KNN](https://erikbern.com/2018/02/15/new-benchmarks-for-approximate-nearest-neighbors.html) is also worth trying, the link provides a list of knn python packages. Howerver, my laptop is running out of memmory during saving features.
 
 My device information is as follows:
  * Intel Core i7-77000HQ CPU@ 2.8GHz, 16GB RAM
