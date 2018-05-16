@@ -19,12 +19,10 @@ The general steps are as follows:
 
 
 * (1)function: get_im() in image_process.py , it is used for resizing image to (224,224,3)
-* (2)function: vgg_image() in image_process.pyvgg_process, it is used for vgg16 model, but it is very easy to go to overfitting,
+* (2)function: vgg_image() in image_process.py, it is used for vgg16 model, but it is very easy to go to overfitting,
 * (3)gen_t1 in util.py,  image augmentation, this works like a charm.
 
 3. Models:  models.py
-
-
 
 * vgg_feature(): get the images features from vgg16 pretrained models.
 * vgg_predict(p): load the images features and final tuning the model.
