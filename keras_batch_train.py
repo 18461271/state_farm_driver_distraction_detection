@@ -8,8 +8,8 @@ with open('conf/conf.json') as f:
   config = json.load(f)
 model_path   = config["model_path"]
 
-batch_size=32
-epochs=19
+batch_size=*
+epochs=*
 path="dataset/"
 
 train_folder = "dataset/keras_train_batch"
@@ -19,13 +19,11 @@ test_folder = "dataset/kaggle_test_clean"
 
 
 train_batches = get_batches(train_folder, gen_t1,  batch_size=batch_size)
-#train_batches = get_batches(train_folder, batch_size=batch_size)
 val_batches = get_batches(valid_folder, batch_size=batch_size, shuffle=False)
 
 (val_classes, trn_classes, val_labels, trn_labels, val_filenames, train_filenames, test_filenames) = get_classes(path)
 
-#trn = get_data(path+'keras_train_batch')
-#val = get_data(path+'keras_valid_batch')
+
 t=time.time()
 model= vgg_tuned()
 model.fit_generator(train_batches,steps_per_epoch=len(train_batches ), epochs=epochs, validation_data=val_batches,
