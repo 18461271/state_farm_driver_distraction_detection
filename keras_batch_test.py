@@ -7,9 +7,9 @@ import os,json
 import numpy as np
 
 
-img_rows=224
-img_cols=224
-batch_size=32
+img_rows=*
+img_cols=*
+batch_size=*
 print("[INFO] Loaded models ")
 #path = os.path.join('dataset', 'output',  '*.json')
 with open('conf/conf.json') as f:
@@ -24,7 +24,6 @@ model = model_from_json(loaded_model_json)
 # load weights into new model
 model.load_weights("dataset/output/model/batch_model.h5")
 
-#(val_classes, trn_classes, val_labels, trn_labels, val_filenames, train_filenames, test_filenames) = get_classes(path)
 
 print("[INFO] loading test data ...")
 
@@ -40,7 +39,7 @@ submission = pd.DataFrame(test_preds, columns=labels)
 submission.insert(0, 'image', test_ID)
 submission.head()
 
-file_name = 'summit.csv'
+file_name = 'submit.csv'
 submit_file = os.path.join(output_path, file_name)
 
 submission.to_csv(submit_file, index=False)
